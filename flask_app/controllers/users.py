@@ -5,3 +5,6 @@ from flask import flash
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
 
+@app.route("/")
+def load_home_page():
+    return render_template("login_reg.html")
