@@ -31,10 +31,15 @@ class Review:
         if (len(data["review"]) < 10):
             flash("Review must be at least 10 characters, you absolute fool!")
             is_valid = False
-        if (float(data["rating"]) < 0):
-            flash("Rating must be greater than or equal to zero, genius!")
-            is_valid = False
         if (len(data["restaurant_name"]) < 2):
             flash("Restaurant name must be more than 2 characters, dingus!")
             is_valid = False
+        if (float(data["rating"]) < 0):
+            flash("Rating must be greater than or equal to zero, genius!")
+            is_valid = False
+        elif (float(data["rating"]) > 8.3):
+            flash("Rating must be less than 8.3, ya goofball!")
+            is_valid = False
+        
+        return is_valid 
         
