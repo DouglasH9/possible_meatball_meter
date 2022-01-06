@@ -25,6 +25,24 @@
                 <input class="btn btn-primary form-control" name="submit_reg" type="submit">
             </form>
         </div>
+        <div class="m-3" id="login">
+            <h1>Login</h1>
+            <form action="/login" method="POST">
+                <label class="form-label" for="email_log">Email:</label>
+                <input class="form-control" type="text" name="email_log" id="email_log" >
+                <label class="form-label" for="pass_log">Password:</label>
+                <input class="form-control" type="password" name="pass_log" id="pass_log" >
+                <label class="form-label" for="login">Login</label>
+                <input class="btn btn-success form-control" type="submit" name="login" id="login">
+            </form>
+        </div>
     </div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <h2 style="text-align: center;">{{message}}</h2>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 </body>
 </html>
