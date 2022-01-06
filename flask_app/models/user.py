@@ -35,15 +35,15 @@ class User:
             flash("Password is not long enough!")
             is_valid = False
         # checks to see if entered password matches password confirmation
-        if (data["pass_ent"] != data["pass_con "]):
+        if (data["pass_ent"] != data["pass_con"]):
             flash("Passwords do not match")
             is_valid = False
         # checks to see if email is already in database
-        if len(results > 0):
+        if len(results) > 0:
             flash("Email is already taken, Bozo!")
             is_valid = False
         # checks for email length
-        if len(data["email"] < 4):
+        if len(data["email"]) < 4:
             flash("Email must be longer than 3 characters")
             return False
         # checks to see if email matches email regex format

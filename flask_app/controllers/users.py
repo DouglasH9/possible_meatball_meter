@@ -7,6 +7,7 @@ bcrypt = Bcrypt(app)
 
 @app.route("/")
 def load_home_page():
+    # loads login and registration page
     return render_template("login_reg.html")
 
 @app.route("/register", methods=["POST"])
@@ -32,3 +33,38 @@ def register_user():
     session["user_id"] = id
     # redirect to success page after successful registration
     return redirect("/reg_success")
+
+@app.route("/reg_success")
+def reg_success():
+    # redirects to login page if user id isn't in session, blocking people from accessing the site without logging in
+    if "user_id" not in session:
+        return redirect("logout")
+    data = {
+        "id" : session["user_id"]
+    }
+    # renders success page with user object as a variable "user"
+    return render_template("reg_success.html", user = User.get_by_id(data))
+
+@app.route("/login", methods=["POST"])
+def login():
+    # set data to email from form
+    data = {"email" : request.form["email_log"]}
+    # pass email through getbyemail function and retrieve user info
+    user_in_db = User.get_by_email(data)
+    print(user_in_db)
+
+    if not user_in_db:
+        # flash message if user doesn't exist
+        flash("Invalid email dumbo!")
+        return redirect("/")
+
+    # check to see if hashed password matches using check password has method from bcrypt
+    elif not bcrypt.check_password_hash(user_in_db.password, request.form["pass_log"]):
+        # flash message if hashed password doesn't match stored hashed password
+        flash("Wrong password ya dringus!!!")
+        return redirect("/")
+
+    # if user email in database and password matches put user id and user name in session
+    session["user_id"] = user_in_db.id
+    session["user_name"] = user_in_db.fName
+    return redirect("/dashboard")
