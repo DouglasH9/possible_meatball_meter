@@ -68,3 +68,18 @@ def login():
     session["user_id"] = user_in_db.id
     session["user_name"] = user_in_db.fName
     return redirect("/dashboard")
+
+@app.route("/dashboard")
+def render_dashboard():
+    if "user_id" not in session:
+        return redirect("/logout")
+    data = {
+        "id" : session["user_id"]
+    }
+
+    return render_template("dashboard.html", user = User.get_by_id(data))
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect("/")
