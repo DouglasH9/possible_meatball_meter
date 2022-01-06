@@ -12,3 +12,5 @@ class Rating:
         self.user_id = data["user_id"]
         self.restaurant_name = data["restaurant_name"]
         self.is_affordable = data["is_affordable"]
+
+        self.user = {}
