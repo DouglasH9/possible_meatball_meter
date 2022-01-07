@@ -18,12 +18,15 @@
             <textarea name="review" id="review" cols="50" rows="20">How was it?</textarea>
             <label for="is_blasted">Blasted with protein?</label>
             <input type="checkbox" name="is_blasted" value=1>
+            <!-- use hidden input to send value of 0 to MySQL db if box isn't checked -->
             <input type="hidden" name="is_blasted" value=0>
             <label for="rating">Meatball Meter Rating</label>
+            <!-- two inputs with same name for meatball meter so users can see value of range slider. set each oninput listeners to each other's values so they're synced -->
             <input type="range" name="rating" id="rating" min="0" max="8.3" step="0.1" value="5.0"  oninput="rangevalue.value=value">
             <input type="number" min="0" max="8.3" step="0.1" value="5.0" id="rangevalue" oninput="rating.value=value">
             <label for="is_affordable">Affordable?</label>
             <input type="checkbox" name="is_affordable" id="is_affordable" value=1>
+            <!-- use hidden input to send value of zero to MySQL db if box not checked -->
             <input type="hidden" name="is_affordable" value=0>
             <input type="submit" name="submit" value="Add Your Review!">
         </form>
