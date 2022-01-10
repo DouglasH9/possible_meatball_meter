@@ -42,4 +42,33 @@ class Review:
             is_valid = False
         
         return is_valid 
+
+@classmethod
+def get_all_reviews(cls):
+
+    # left join query grabs all reviews with users.id left joined to user_id
+    query = "SELECT * FROM reviews LEFT JOIN users ON users.id = user_id;"
+    result = connectToMySQL("meatball_meter").query_db(query)
+
+    # puts all reviews into a list
+    all_reviews = []
+
+    # creates and instance of a review from each row of results
+    for row in result:
+        review = cls(row)
+
+        # creates instance of user who left review and stores in dictionary
+        user_data = {
+            "id" : row["users.id"],
+            "fName" : row["fName"],
+            "lName" : row["lName"],
+            "email" : row["email"],
+            "password" : row["password"],
+            "created_at" : row["users.created_at"],
+            "updated_at" : row["users.updated_at"]
+        }
+        review.user = user.User(user_data)
+        all_reviews.append(review)
+
+    return all_reviews
         
