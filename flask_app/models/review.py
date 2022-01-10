@@ -76,3 +76,24 @@ class Review:
 
         return all_reviews
             
+    @classmethod
+    def get_one_review(cls, data):
+        
+        query = "SELECT * FROM reviews LEFT JOIN users ON users.id = user_id WHERE reviews.id = %(id)s;"
+        result = connectToMySQL("meatball_meter").query_db(query, data)
+
+        # create instance of review in var called "review" taking the the first dictionary returned in result List
+        review = cls(result[0])
+
+        # create user instance from the LEFT JOINED table results from query
+        user_data ={
+            "id" : result[0]["users.id"],
+            "fName" : result[0]["fName"],
+            "lName" : result[0]["lName"],
+            "email" : result[0]["email"],
+            "password" : result[0]["password"],
+            "created_at" : result[0]["created_at"],
+            "updated_at" : result[0]["updated_at"]
+        }
+        review.user = user.User(user_data)
+        return review
