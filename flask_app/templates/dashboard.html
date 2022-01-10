@@ -11,5 +11,29 @@
     <h1>Henlo, {{user.fName}}!</h1>
     <a href="/logout">Logout</a>
     <a href="/add_review">Add a review!</a>
+    <h2>Latest Reviews:</h2>
+    <ul>
+        {% for review in reviews %}
+        <li>
+            <h4>{{review.user.fName}} {{review.user.lName.0}}.</h4>
+            <a class="btn btn-success" href="/show_review/{{review.id}}">View</a>
+            <div>
+                <p>Restaurant: {{review.restaurant_name}}</p>
+                {% if review.is_affordable == 1 %}
+                    <p>Affordable?: Yes!</p>
+                {% elif review.is_affordable == 0 %}
+                    <p>Affordable?: Nope!</p>
+                {% endif %}
+                {% if review.is_blasted == 1 %}
+                    <p>Blasted with protein?: Hell yeah bröther!</p>
+                {% elif review.is_blasted == 0 %}
+                    <p>Blasted with protein?: Nope!</p>
+                {% endif %}
+                <p>Meatball rating: {{review.rating}}</p>
+                <p>Date of review: {{review.created_at}}</p>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

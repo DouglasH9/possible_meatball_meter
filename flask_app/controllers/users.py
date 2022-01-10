@@ -1,6 +1,7 @@
 from flask_app import app
 from flask import render_template, redirect, request, session
 from flask_app.models.user import User
+from flask_app.models.review import Review
 from flask import flash
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
@@ -77,7 +78,7 @@ def render_dashboard():
         "id" : session["user_id"]
     }
 
-    return render_template("dashboard.html", user = User.get_by_id(data))
+    return render_template("dashboard.html", user = User.get_by_id(data), reviews = Review.get_all_reviews())
 
 @app.route("/logout")
 def logout():
