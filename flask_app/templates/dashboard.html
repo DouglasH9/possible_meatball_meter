@@ -31,6 +31,7 @@
                 {% endif %}
                 <p>Meatball rating: {{review.rating}}</p>
                 <p>Date of review: {{review.created_at}}</p>
+                <a href="/show_review/{{review.id}}">Read Review</a>
             </div>
         </li>
         {% endfor %}

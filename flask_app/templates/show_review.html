@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review</title>
+</head>
+<body>
+    <h2>{{review.user.fName}} {{review.user.lName.0}}'s review for {{review.restaurant_name}}:</h2>
+    <h3>{{review.review}}</h3>
+    {% if review.is_blasted == 1 %}
+        <p>Blasted with protein?: You better believe it, bröther!</p>
+    {% elif review.is_blasted == 0 %}
+        <p>Blasted with protein?: Nope! Definitely not!</p>
+    {% endif %}
+    {% if review.is_affordable == 1 %}
+        <p>Affordable?: Abso - lutely!</p>
+    {% elif review.is_affordable == 0 %}
+        <p>Affordable?: Better bring some extra cash!</p>
+    {% endif %}
+</body>
+</html>
