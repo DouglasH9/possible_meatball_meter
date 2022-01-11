@@ -1,0 +1,22 @@
+body {
+    background-image: url("/static/imgs/meatpaper.jpeg");
+    background-size: cover;
+}
+
+#card_container {
+    margin-top: 7%;
+}
+
+#register_card {
+    color: rgb(252, 161, 3);
+    border-radius: 10px;
+    padding: 20px;
+    background-image: radial-gradient(rgb(0, 0, 0, 0.4), rgb(0,0,0,0.7));
+}
+
+#login_card {
+    color: rgb(23,155,98);
+    border-radius: 10px;
+    padding: 20px;
+    background-image: radial-gradient(rgb(0, 0, 0, 0.4), rgb(0,0,0,0.7));
+}
