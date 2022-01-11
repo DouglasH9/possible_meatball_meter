@@ -97,3 +97,9 @@ class Review:
         }
         review.user = user.User(user_data)
         return review
+
+    @classmethod
+    def delete_review(cls, data):
+        query = "DELETE FROM reviews WHERE id = %(id)s"
+        result = connectToMySQL("meatball_meter").query_db(query, data)
+        return result

@@ -6,6 +6,8 @@ from flask_app.models import user
 
 @app.route("/add_review")
 def render_add_a_review():
+    if "user_id" not in session:
+        return redirect("/logout")
     return render_template("/add_review.html")
 
 @app.route("/push_review", methods=["POST"])
@@ -33,9 +35,19 @@ def push_review_to_db():
 
 @app.route("/show_review/<int:id>")
 def render_one_review(id):
+    if "user_id" not in session:
+        return redirect("logout")
     data = {
         "id" : id
     }
     review = Review.get_one_review(data)
-    return render_template("/show_review.html", review = review)
+    return render_template("/show_review.html", review = review, userId = session["user_id"])
+
+@app.route("/delete/<int:id>", methods=["POST"])
+def delete_review(id):
+    data = {
+        "id" : id
+    }
+    Review.delete_review(data)
+    return redirect("/dashboard")
 

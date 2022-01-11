@@ -16,23 +16,28 @@
         {% for review in reviews %}
         <li>
             <h4>{{review.user.fName}} {{review.user.lName.0}}.</h4>
-            <a class="btn btn-success" href="/show_review/{{review.id}}">View</a>
             <div>
                 <p>Restaurant: {{review.restaurant_name}}</p>
                 {% if review.is_affordable == 1 %}
-                    <p>Affordable?: Yes!</p>
+                <p>Affordable?: Yes!</p>
                 {% elif review.is_affordable == 0 %}
-                    <p>Affordable?: Nope!</p>
+                <p>Affordable?: Nope!</p>
                 {% endif %}
                 {% if review.is_blasted == 1 %}
-                    <p>Blasted with protein?: Hell yeah bröther!</p>
+                <p>Blasted with protein?: Hell yeah bröther!</p>
                 {% elif review.is_blasted == 0 %}
-                    <p>Blasted with protein?: Nope!</p>
+                <p>Blasted with protein?: Nope!</p>
                 {% endif %}
                 <p>Meatball rating: {{review.rating}}</p>
                 <p>Date of review: {{review.created_at}}</p>
-                <a href="/show_review/{{review.id}}">Read Review</a>
+                <a class="btn btn-success" href="/show_review/{{review.id}}">Read Review</a>
             </div>
+            {% if review.user_id == user.id %}
+                <a class="btn btn-warning" href="/edit/{{review.id}}">Edit</a>
+                <form action="/delete/{{review.id}}" method="POST">
+                    <input type="submit" value="Delete" class="btn btn-danger" onclick="confirm('Are you sure you want to delete? This is permanent!')">
+                </form>
+            {% endif %}
         </li>
         {% endfor %}
     </ul>
