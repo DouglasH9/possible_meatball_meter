@@ -43,6 +43,33 @@ def render_one_review(id):
     review = Review.get_one_review(data)
     return render_template("/show_review.html", review = review, userId = session["user_id"])
 
+@app.route("/edit/<int:id>")
+def show_edit_page(id):
+    if "user_id" not in session:
+        return redirect("logout")
+    data = {
+        "id" : id
+    }
+    review = Review.get_one_review(data)
+    return render_template("/edit_review.html", review = review)
+
+@app.route("/edit_review/<int:id>", methods=["POST"])
+def edit_review(id):
+    data = {
+        "restaurant_name" : request.form["restaurant_name"],
+        "review" : request.form["review"],
+        "is_blasted" : request.form["is_blasted"],
+        "rating" : request.form["rating"], 
+        "is_affordable" : request.form["is_affordable"],
+        "id" : id
+    }
+    if not Review.validate_review(data):
+        return redirect(f"/edit_review/{id}")
+
+    Review.send_edit_to_db(data)
+    return redirect("/dashboard")
+
+
 @app.route("/delete/<int:id>", methods=["POST"])
 def delete_review(id):
     data = {

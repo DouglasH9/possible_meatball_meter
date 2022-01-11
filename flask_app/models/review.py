@@ -99,6 +99,12 @@ class Review:
         return review
 
     @classmethod
+    def send_edit_to_db(cls, data):
+        query = "UPDATE reviews SET review = %(review)s, is_blasted = %(is_blasted)s, rating = %(rating)s, restaurant_name = %(restaurant_name)s, is_affordable = %(is_affordable)s, updated_at = NOW() WHERE id = %(id)s"
+        result = connectToMySQL("meatball_meter").query_db(query, data)
+        return result
+
+    @classmethod
     def delete_review(cls, data):
         query = "DELETE FROM reviews WHERE id = %(id)s"
         result = connectToMySQL("meatball_meter").query_db(query, data)
