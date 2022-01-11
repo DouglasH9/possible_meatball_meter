@@ -30,3 +30,12 @@ def push_review_to_db():
     # add review if passed validations
     Review.add_review(data)
     return redirect("/dashboard")
+
+@app.route("/show_review/<int:id>")
+def render_one_review(id):
+    data = {
+        "id" : id
+    }
+    review = Review.get_one_review(data)
+    return render_template("/show_review.html", review = review)
+
