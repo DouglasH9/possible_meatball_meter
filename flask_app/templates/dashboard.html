@@ -9,11 +9,11 @@
     <title>Dashboard</title>
 </head>
 <body>
-    <h1>Hello, {{user.fName}}! Welcome to the Meatball Meter restaurant review site!</h1>
+    <h1 id="banner">Hello, {{user.fName}}! Welcome to the Meatball Meter restaurant review site!</h1>
     <div id="nav_bar">
-        <a href="/add_review">Add a review!</a>
-        <a href="/my_reviews">My reviews</a>
-        <a href="/logout">Logout</a>
+        <a id="nav_btn" href="/add_review">Add a review!</a>
+        <a id="nav_btn" href="/my_reviews">My reviews</a>
+        <a id="nav_btn" href="/logout">Logout</a>
     </div>
     <h2>Latest Reviews:</h2>
     <ul id="review_list">

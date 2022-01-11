@@ -1,5 +1,23 @@
+#banner {
+    background-color: rgb(24,150,95, 0.5);
+    padding: 15px;
+    text-align: center;
+}
+
 #nav_bar {
-    margin: auto;
+    background-color: rgb(247,132,60,0.5);
+    display: flex;
+    justify-content: space-evenly;
+    padding: 15px;
+    border-top: 3px solid black;
+
+}
+
+#nav_btn {
+    text-decoration: none;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 7px;
 }
 
 ul {
