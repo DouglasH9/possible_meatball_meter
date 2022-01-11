@@ -5,41 +5,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/dashboard.css')}}">
     <title>Dashboard</title>
 </head>
 <body>
-    <h1>Henlo, {{user.fName}}!</h1>
-    <a href="/logout">Logout</a>
-    <a href="/add_review">Add a review!</a>
+    <h1>Hello, {{user.fName}}! Welcome to the Meatball Meter restaurant review site!</h1>
+    <div id="nav_bar">
+        <a href="/add_review">Add a review!</a>
+        <a href="/my_reviews">My reviews</a>
+        <a href="/logout">Logout</a>
+    </div>
     <h2>Latest Reviews:</h2>
-    <ul>
+    <ul id="review_list">
         {% for review in reviews %}
-        <li>
-            <h4>{{review.user.fName}} {{review.user.lName.0}}.</h4>
-            <div>
-                <p>Restaurant: {{review.restaurant_name}}</p>
-                {% if review.is_affordable == 1 %}
-                <p>Affordable?: Yes!</p>
-                {% elif review.is_affordable == 0 %}
-                <p>Affordable?: Nope!</p>
-                {% endif %}
-                {% if review.is_blasted == 1 %}
-                <p>Blasted with protein?: Hell yeah bröther!</p>
-                {% elif review.is_blasted == 0 %}
-                <p>Blasted with protein?: Nope!</p>
-                {% endif %}
-                <p>Meatball rating: {{review.rating}}</p>
-                <p>Date of review: {{review.created_at}}</p>
-                <a class="btn btn-success" href="/show_review/{{review.id}}">Read Review</a>
-            </div>
-            {% if review.user_id == user.id %}
-                <a class="btn btn-warning" href="/edit/{{review.id}}">Edit</a>
-                <form action="/delete/{{review.id}}" method="POST">
-                    <input type="submit" value="Delete" class="btn btn-danger" onclick="confirm('Are you sure you want to delete? This is permanent!')">
-                </form>
-            {% endif %}
-        </li>
-        {% endfor %}
+            <li>
+                <div id="review_card">
+                    <h4>{{review.user.fName}} {{review.user.lName.0}}.</h4>
+                    <p>Restaurant: {{review.restaurant_name}}</p>
+                    {% if review.is_affordable == 1 %}
+                    <p>Affordable?: Yes!</p>
+                    {% elif review.is_affordable == 0 %}
+                    <p>Affordable?: Nope!</p>
+                    {% endif %}
+                    {% if review.is_blasted == 1 %}
+                    <p>Blasted with protein?: Hell yeah bröther!</p>
+                    {% elif review.is_blasted == 0 %}
+                    <p>Blasted with protein?: Nope!</p>
+                    {% endif %}
+                    <p>Meatball rating: {{review.rating}}</p>
+                    <p>Date of review: {{review.created_at}}</p>
+                    <a class="btn btn-success" href="/show_review/{{review.id}}">Read Review</a>
+                    {% if review.user_id == user.id %}
+                    <a class="btn btn-warning" href="/edit/{{review.id}}">Edit</a>
+                    <form action="/delete/{{review.id}}" method="POST">
+                        <input type="submit" value="Delete" class="btn btn-danger" onclick="confirm('Are you sure you want to delete? This is permanent!')">
+                    </form>
+                    {% endif %}
+                </div>
+            </li>
+            {% endfor %}
     </ul>
 </body>
 </html>

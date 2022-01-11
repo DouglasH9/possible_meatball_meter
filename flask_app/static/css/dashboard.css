@@ -1,0 +1,22 @@
+#nav_bar {
+    margin: auto;
+}
+
+ul {
+    list-style: none;
+}
+
+#review_list {
+    display: flex;
+    margin: auto;
+    width: 50%;
+    justify-content: center;
+}
+
+#review_card {
+    padding: 8px;
+    border: 2px solid black;
+    border-radius: 8px;
+    background-image: radial-gradient(rgb(0, 0, 0, 0.3), rgb(0,0,0,0.7));
+    color: antiquewhite;
+}
