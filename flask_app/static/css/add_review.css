@@ -3,6 +3,11 @@ body {
     background-size: cover;
 }
 
+.fancy_words {
+    text-shadow: 0 1px 1px rgb(0, 0, 0, 0.8);
+    font-weight: 900;
+}
+
 #banner {
     background-color: rgb(24,150,95, 0.5);
     text-shadow: 0 1px 1px rgb(0, 0, 0, 0.8);
@@ -61,14 +66,13 @@ body {
     transform: scale(1.1);
     box-shadow: 4px 4px 10px rgba(221, 52, 10, 0.9);
     background-color: rgba(8, 96, 238, 0.9);
-    
 }
 
 #form_container {
     display: flex;
     justify-content: center;
+    margin: 35px auto;
     padding: 12px;
-    margin: auto;
     width: 65%;
     border: 2px solid black;
     border-radius: 8px;
@@ -82,4 +86,51 @@ body {
     margin: auto;
 }
 
+.irish_border {
+    border: 10px solid;
+    border-image-slice: 1;
+    border-width: 5px;
+    border-image-source: linear-gradient(to left, rgb(237, 111, 14), rgb(0, 219, 99));
+}
+
+#restaurant_name {
+    margin-bottom: 20px;
+    background-color: rgb(128, 128, 128, 0.7);
+    border-bottom: 5px solid rgb(0, 219, 99);
+    transition: all 0.7s ease-in-out;
+}
+
+#restaurant_name:focus {
+    background-color: whitesmoke;
+    border-bottom: 5px solid rgb(237, 111, 14);
+}
+
+#review {
+    margin-bottom: 20px;
+    background-color: rgb(128, 128, 128, 0.7);
+    border-bottom: 5px solid rgb(0, 219, 99);
+    transition: all 0.7s ease-in-out;
+}
+
+#review:focus {
+    background-color: whitesmoke;
+    border-bottom: 5px solid rgb(237, 111, 14);
+}
+
+#check_boxes {
+    margin-bottom: 20px;
+    font-weight: 900;
+}
+
+.check_field {
+    padding: 5px;
+    border-radius: 8px;
+    background-color: rgb(0, 0, 0, 0.7);
+    border: 1px solid rgb(0, 219, 99);
+    margin: 10px;
+}
+
+#slider {
+    margin-bottom: 20px;
+}
 

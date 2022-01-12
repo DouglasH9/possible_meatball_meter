@@ -17,27 +17,31 @@
     </div>
     <div id="form_container">
         <form action="/push_review", method="POST" id="the_form">
-            <label class="block form-label" for="restaurant_name">Restaurant</label>
-            <input class="block form-control" class="block" type="text" name="restaurant_name">
-            <label class="block form-label" for="review">Review</label>
-            <textarea class="block form-control" name="review" id="review" cols="50" rows="10" placeholder="How was it?"></textarea>
-            <div class="block">
-                <label class="form-check-label" for="is_blasted">Blasted with protein?</label>
-                <input class="form-check-input" type="checkbox" name="is_blasted" value=1>
+            <label class="block form-label fancy_words" for="restaurant_name">Restaurant</label>
+            <input class="block form-control fancy_words" class="block" type="text" name="restaurant_name" id="restaurant_name" placeholder="Where'd you go?">
+            <label class="block form-label fancy_words" for="review">Review</label>
+            <textarea class="block form-control fancy_words" name="review" id="review" cols="50" rows="10" placeholder="How was it?"></textarea>
+            <div id="check_boxes" class="block">
+                <div id="blast_check" class="check_field">
+                    <label class="form-check-label fancy_words" for="is_blasted">Blasted with protein?</label>
+                    <input class="form-check-input fancy_words" type="checkbox" name="is_blasted" value=1>
+                </div>
                 <!-- use hidden input to send value of 0 to MySQL db if box isn't checked -->
                 <input type="hidden" name="is_blasted" value=0>
-                <label class="form-check-label" for="is_affordable">Affordable?</label>
-                <input class="form-check-input" type="checkbox" name="is_affordable" id="is_affordable" value=1>
+                <div id="is_affordable" class="check_field">
+                    <label class="form-check-label fancy_words" for="is_affordable" id="afford_label">Affordable?</label>
+                    <input class="form-check-input fancy_words" type="checkbox" name="is_affordable" value=1>
+                </div>
                 <!-- use hidden input to send value of zero to MySQL db if box not checked -->
                 <input type="hidden" name="is_affordable" value=0>
             </div>
-            <label class="block" for="rating">Meatball Meter Rating</label>
+            <label class="block fancy_words" for="rating">Meatball Meter Rating</label>
             <!-- two inputs with same name for meatball meter so users can see value of range slider. set each oninput listeners to each other's values so they're synced -->
-            <div class="block">
+            <div class="block" id="slider">
                 <input type="range" name="rating" id="rating" min="0" max="8.3" step="0.1" value="5.0"  oninput="rangevalue.value=value">
                 <input type="number" min="0" max="8.3" step="0.1" value="5.0" id="rangevalue" oninput="rating.value=value">
             </div>
-            <input class="block" type="submit" name="submit" value="Add Your Review!">
+            <input class="block fancy_words" type="submit" name="submit" value="Add Your Review!">
         </form>
     </div>
     {% with messages = get_flashed_messages() %}
