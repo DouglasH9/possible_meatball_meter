@@ -22,15 +22,15 @@
             <label class="block form-label fancy_words" for="review">Review</label>
             <textarea class="block form-control fancy_words" name="review" id="review" cols="50" rows="10" placeholder="How was it?"></textarea>
             <div id="check_boxes" class="block">
-                <div id="blast_check" class="check_field">
+                <div id="check_field1" class="check_field">
                     <label class="form-check-label fancy_words" for="is_blasted">Blasted with protein?</label>
-                    <input class="form-check-input fancy_words" type="checkbox" name="is_blasted" value=1>
+                    <input class="form-check-input fancy_words" type="checkbox" name="is_blasted" id="is_blasted" value=1>
                 </div>
                 <!-- use hidden input to send value of 0 to MySQL db if box isn't checked -->
                 <input type="hidden" name="is_blasted" value=0>
-                <div id="is_affordable" class="check_field">
+                <div id="check_field2" class="check_field">
                     <label class="form-check-label fancy_words" for="is_affordable" id="afford_label">Affordable?</label>
-                    <input class="form-check-input fancy_words" type="checkbox" name="is_affordable" value=1>
+                    <input class="form-check-input fancy_words" type="checkbox" name="is_affordable" id="is_affordable" value=1>
                 </div>
                 <!-- use hidden input to send value of zero to MySQL db if box not checked -->
                 <input type="hidden" name="is_affordable" value=0>

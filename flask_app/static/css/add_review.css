@@ -127,6 +127,16 @@ body {
     border-radius: 8px;
     background-color: rgb(0, 0, 0, 0.7);
     border: 1px solid rgb(0, 219, 99);
+    box-shadow: 2px 2px 3px 3px aliceblue;
+    margin: 10px;
+}
+
+#checked_field {
+    padding: 5px;
+    border-radius: 8px;
+    background-color: rgb(0, 0, 0, 0.7);
+    border: 1px solid rgb(237, 111, 14);
+    box-shadow: -2px -2px 3px 3px aliceblue;
     margin: 10px;
 }
 
