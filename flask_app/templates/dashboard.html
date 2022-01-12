@@ -9,13 +9,13 @@
     <title>Dashboard</title>
 </head>
 <body>
-    <h1 id="banner">Hello, {{user.fName}}! Welcome to the Meatball Meter restaurant review site!</h1>
+    <h2 id="banner">Hello, {{user.fName}}! Welcome to the Meatball Meter restaurant review site!</h1>
     <div id="nav_bar">
         <a id="nav_btn" href="/add_review">Add a review!</a>
         <a id="nav_btn" href="/my_reviews">My reviews</a>
         <a id="nav_btn" href="/logout">Logout</a>
     </div>
-    <h2>Latest Reviews:</h2>
+    <h2 id="latest">Latest Reviews:</h2>
     <ul id="review_list">
         {% for review in reviews %}
             <li>
@@ -34,13 +34,15 @@
                     {% endif %}
                     <p>Meatball rating: {{review.rating}}</p>
                     <p>Date of review: {{review.created_at}}</p>
-                    <a class="btn btn-success" href="/show_review/{{review.id}}">Read Review</a>
-                    {% if review.user_id == user.id %}
-                    <a class="btn btn-warning" href="/edit/{{review.id}}">Edit</a>
-                    <form action="/delete/{{review.id}}" method="POST">
-                        <input type="submit" value="Delete" class="btn btn-danger" onclick="confirm('Are you sure you want to delete? This is permanent!')">
-                    </form>
-                    {% endif %}
+                    <div id="btn_container" class="btn-group">
+                        <a class="btn green" href="/show_review/{{review.id}}">Read Review</a>
+                        {% if review.user_id == user.id %}
+                        <a class="btn white" href="/edit/{{review.id}}">Edit</a>
+                        <form action="/delete/{{review.id}}" method="POST">
+                            <input type="submit" value="Delete" class="btn orange" onclick="confirm('Are you sure you want to delete? This is permanent!')">
+                        </form>
+                        {% endif %}
+                    </div>
                 </div>
             </li>
             {% endfor %}
