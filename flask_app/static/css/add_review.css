@@ -1,0 +1,77 @@
+
+
+
+#banner {
+    background-color: rgb(24,150,95, 0.5);
+    text-shadow: 0 1px 1px rgb(0, 0, 0, 0.8);
+    color: antiquewhite;
+    border-bottom: 4px solid black;
+    border-radius: 7px;
+    padding: 15px;
+    text-align: center;
+    width: 90%;
+    margin: auto;
+}
+
+@keyframes myGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+#nav_bar {
+    width: 80%;
+    margin: auto;
+    border-bottom: 2px solid black;
+    box-shadow: 5px 5px 10px black;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-size: 350% 350%;
+    background-image: linear-gradient(-45deg, rgba(243, 161, 67, 0.3), rgba(245, 124, 48, 0.5), rgba(247, 119, 39, 0.6), rgba(245, 87, 14, 0.7), rgba(221, 52, 10, 0.9));
+    animation-name: myGradient;
+    animation-duration: 12s;
+    animation-iteration-count: infinite;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 15px;
+    /* border-top: 3px solid black; */
+}
+
+#nav_btn {
+    background-color: rgb(47, 120, 237, 0.7);
+    color: antiquewhite;
+    text-decoration: none;
+    font-weight: 900;
+    text-shadow: 0 1px 1px rgb(0, 0, 0, 0.8);
+    border: 2px solid black;
+    transition: all 0.3s ease-in-out;
+    border-radius: 5px;
+    padding: 7px;
+}
+
+#nav_btn:hover {
+    transform: scale(1.1);
+    box-shadow: 4px 4px 10px rgba(221, 52, 10, 0.9);
+    background-color: rgba(8, 96, 238, 0.9);
+    
+}
+
+#form_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.block {
+    display: block;
+}
+
+#rest_id {
+    margin: auto;
+}
