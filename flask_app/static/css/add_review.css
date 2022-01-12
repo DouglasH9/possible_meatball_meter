@@ -1,5 +1,7 @@
-
-
+body {
+    background-image: url("/static/imgs/meatpaper.jpeg");
+    background-size: cover;
+}
 
 #banner {
     background-color: rgb(24,150,95, 0.5);
@@ -65,13 +67,19 @@
 #form_container {
     display: flex;
     justify-content: center;
-    align-items: center;
+    padding: 12px;
+    margin: auto;
+    width: 65%;
+    border: 2px solid black;
+    border-radius: 8px;
+    background-image: radial-gradient(rgb(0, 0, 0, 0.5), rgb(0,0,0,0.9));
+    color: antiquewhite;
 }
 
 .block {
+    text-align: center;
     display: block;
-}
-
-#rest_id {
     margin: auto;
 }
+
+
