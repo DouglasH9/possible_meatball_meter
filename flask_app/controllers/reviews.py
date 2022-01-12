@@ -27,7 +27,7 @@ def push_review_to_db():
     }
     # redirect with flash messages if data doesn't pass validations
     if not Review.validate_review(data):
-        return redirect("/dashboard")
+        return redirect("/add_review")
 
     # add review if passed validations
     Review.add_review(data)

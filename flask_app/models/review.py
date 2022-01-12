@@ -27,7 +27,9 @@ class Review:
 
     @staticmethod
     def validate_review(data):
+        
         is_valid = True
+
         if (len(data["review"]) < 10):
             flash("Review must be at least 10 characters, you absolute fool!")
             is_valid = False
