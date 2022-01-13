@@ -102,7 +102,7 @@ class Review:
 
     @classmethod
     def get_users_reviews(cls, data):
-        query = "SELECT * FROM users LEFT JOIN reviews on users.id = reviews.user_id WHERE users.id = %(id)s"
+        query = "SELECT * FROM reviews LEFT JOIN users on users.id = reviews.user_id WHERE users.id = %(id)s"
         result = connectToMySQL("meatball_meter").query_db(query, data)
 
         all_user_reviews = []
@@ -119,7 +119,7 @@ class Review:
                 "created_at" : row['created_at'],
                 "updated_at" : row['updated_at']
             }
-
+            
             review.user = user.User(user_data)
             print(row)
             all_user_reviews.append(review)
