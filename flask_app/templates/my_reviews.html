@@ -20,22 +20,21 @@
         {% for review in reviews %}
             <li>
                 <div id="review_card">
-                    <h2>{{review.restaurant_name}}</h2>
+                    <h4>{{review.restaurant_name}}</h4>
                     <hr>
-                    <h3>{{review.review}}</h3>
-                    <h2>Meatball rating: {{review.rating}}</h2>
+                    <p>Meatball rating: {{review.rating}}</p>
                     {% if review.is_blasted == 1 %}
-                        <h2>Blasted with protein?: Hell yes, Bröther!</h2>
+                        <p>Blasted with protein?: Hell yes, Bröther!</p>
                     {% elif review.is_blasted == 0 %}
-                        <h2>Blasted with protein?: Nope! Definitely not!</h2>
+                        <p>Blasted with protein?: Nope! Definitely not!</p>
                     {% endif %}
                     {% if review.is_affordable == 1 %}
-                        <h2>Affordable?: Yes!</h2>
+                        <p>Affordable?: Yes!</p>
                     {% elif review.is_affordable == 0 %}
-                        <h2>Affordable?: Nope! Bring extra cash!</h2>
+                        <p>Affordable?: Nope! Bring extra cash!</p>
                     {% endif %}
-                    <h2>Updated at: {{review.updated_at}}</h2>
-                    <h2>Written on: {{review.created_at}}</h2>
+                    <p>Updated at: {{review.updated_at}}</p>
+                    <p>Written on: {{review.created_at}}</p>
                     <div id="btn_container" class="btn-group">
                         <a class="btn green" href="/show_review/{{review.id}}">Read Review</a>
                         {% if review.user_id == session["user_id"] %}
