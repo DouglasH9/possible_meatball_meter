@@ -5,30 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/add_review.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/show_review.css') }}">
     <title>Review</title>
 </head>
 <body>
-    <h2>{{review.user.fName}} {{review.user.lName.0}}'s review for {{review.restaurant_name}}:</h2>
-    <h3>{{review.review}}</h3>
-    {% if review.is_blasted == 1 %}
-        <p>Blasted with protein?: You better believe it, bröther!</p>
-    {% elif review.is_blasted == 0 %}
-        <p>Blasted with protein?: Nope! Definitely not!</p>
-    {% endif %}
-    {% if review.is_affordable == 1 %}
-        <p>Affordable?: Abso - lutely!</p>
-    {% elif review.is_affordable == 0 %}
-        <p>Affordable?: Better bring some extra cash!</p>
-    {% endif %}
-    <p>Last updated: {{review.updated_at}}</p>
-    <p>First written: {{review.created_at}}</p>
-    {% if review.user_id == userId %}
-        <a href="/edit/{{review.id}}" class="btn btn-warning">Edit Review</a>
-        <form action="/delete/{{review.id}}" method="POST">
-            <input value="Delete" type="submit" name="delete" id="delete" class="btn btn-danger" onclick="confirm('Are you sure you want to delete? This will be permanent!')">
-        </form>
-    {% endif %}
-    <a href="/dashboard">Home</a>
-    <a href="/logout">Logout</a>
+    <h1 id="banner">Add a review!</h1>
+    <div id="nav_bar">
+        <a id="nav_btn" href="/dashboard">Home</a>
+        <a id="nav_btn" href="/my_reviews">My reviews</a>
+        <a id="nav_btn" href="/logout">Logout</a>
+    </div>
+    <div id="review_container">
+        <h2 class="block">{{review.user.fName}} {{review.user.lName.0}}'s review for {{review.restaurant_name}}</h2>
+        <hr>
+        <h3 class="block">{{review.review}}</h3>
+        <hr>
+        {% if review.is_blasted == 1 %}
+            <h4 class="block space"><span class="red">Blasted with protein?: </span>You better believe it, bröther!</h4>
+        {% elif review.is_blasted == 0 %}
+            <h4 class="block space"><span class="red">Blasted with protein?: </span>Nope! Definitely not!</h4>
+        {% endif %}
+        {% if review.is_affordable == 1 %}
+            <h4 class="block space"><span class="red">Affordable?: </span>Abso - lutely!</h4>
+        {% elif review.is_affordable == 0 %}
+            <h4 class="block space"><span class="red">Affordable?: </span>Better bring some extra cash!</h4>
+        {% endif %}
+        <h5 class="block space"><span class="red">Last updated: </span>{{review.updated_at}}</h5>
+        <h5 class="block space"><span class="red">First written: </span>{{review.created_at}}</h5>
+        {% if review.user_id == userId %}
+            <div class="btn-group" id="btns">
+                <a href="/edit/{{review.id}}" class="btn btn-warning">Edit Review</a>
+                <form action="/delete/{{review.id}}" method="POST">
+                    <input value="Delete" type="submit" name="delete" id="delete" class="btn btn-danger" onclick="confirm('Are you sure you want to delete? This will be permanent!')">
+                </form>
+            </div>
+        {% endif %}
+    </div>
 </body>
 </html>

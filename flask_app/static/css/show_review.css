@@ -1,0 +1,24 @@
+#review_container{
+    margin: 35px auto 0;
+    padding: 25px;
+    width: 65%;
+    border: 2px solid black;
+    border-radius: 8px;
+    background-image: radial-gradient(rgb(0, 0, 0, 0.7), rgb(0,0,0,0.9));
+    color: antiquewhite;
+}
+
+.space{
+    margin-bottom: 30px;
+}
+
+.red {
+    color: orangered;
+}
+
+#btns{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
