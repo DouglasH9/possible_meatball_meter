@@ -15,7 +15,8 @@
         <a id="nav_btn" href="/my_reviews">My reviews</a>
         <a id="nav_btn" href="/logout">Logout</a>
     </div>
-    <h2 id="latest">Latest Reviews:</h2>
+    <h2 id="latest">Latest Reviews</h2>
+    <hr>
     <ul id="review_list">
         {% for review in reviews %}
             <li>
@@ -45,7 +46,7 @@
                     </div>
                 </div>
             </li>
-            {% endfor %}
+        {% endfor %}
     </ul>
 </body>
 </html>

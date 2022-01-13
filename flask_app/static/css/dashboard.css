@@ -46,7 +46,7 @@ body {
 }
 
 #nav_btn {
-    background-color: rgb(47, 120, 237, 0.7);
+    background-color: rgb(0, 0, 0, 0.7);
     color: antiquewhite;
     text-decoration: none;
     font-weight: 900;
@@ -60,13 +60,20 @@ body {
 #nav_btn:hover {
     transform: scale(1.1);
     box-shadow: 4px 4px 10px rgba(221, 52, 10, 0.9);
-    background-color: rgba(8, 96, 238, 0.9);
+    background-color: rgba(0, 0, 0, 0.9);
     
 }
 
 #latest {
+    margin: auto;
+    text-align: center;
+    font-weight: 700;
     margin: 35px;
     color: black;
+}
+
+#reviews_wrapper{
+    
 }
 
 ul {
@@ -75,8 +82,9 @@ ul {
 
 #review_list {
     display: flex;
+    flex-wrap: wrap;
     margin: auto;
-    width: 100%;
+    width: 90%;
     justify-content: center;
 }
 
@@ -86,7 +94,7 @@ ul {
     width: 95%;
     border: 2px solid black;
     border-radius: 8px;
-    background-image: radial-gradient(rgb(0, 0, 0, 0.5), rgb(0,0,0,0.9));
+    background-image: radial-gradient(rgb(0, 0, 0, 0.7), rgb(0,0,0,0.9));
     color: antiquewhite;
 }
 

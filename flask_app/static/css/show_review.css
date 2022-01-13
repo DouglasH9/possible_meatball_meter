@@ -17,8 +17,27 @@
 }
 
 #btns{
-    width: 50%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-content: center;
+}
+
+.btn_edit{
+    z-index: 1;
+    background-color: greenyellow;
+}
+
+.btn_edit:hover{
+    z-index: 2;
+    box-shadow: 0 0 5px 5px aliceblue;
+}
+
+.btn_delete{
+    z-index: 1;
+    background-color: orange;
+}
+
+.btn_delete:hover{
+    z-index: 2;
+    box-shadow: 0 0 5px 5px aliceblue;
 }

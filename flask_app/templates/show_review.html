@@ -21,6 +21,7 @@
         <hr>
         <h3 class="block">{{review.review}}</h3>
         <hr>
+        <h4 class="block space"><span class="red">Meatball Rating: </span>{{review.rating}}</h4>
         {% if review.is_blasted == 1 %}
             <h4 class="block space"><span class="red">Blasted with protein?: </span>You better believe it, bröther!</h4>
         {% elif review.is_blasted == 0 %}
@@ -34,10 +35,10 @@
         <h5 class="block space"><span class="red">Last updated: </span>{{review.updated_at}}</h5>
         <h5 class="block space"><span class="red">First written: </span>{{review.created_at}}</h5>
         {% if review.user_id == userId %}
-            <div class="btn-group" id="btns">
-                <a href="/edit/{{review.id}}" class="btn btn-warning">Edit Review</a>
+            <div id="btns">
+                <a href="/edit/{{review.id}}" class="btn btn_edit">Edit Review</a>
                 <form action="/delete/{{review.id}}" method="POST">
-                    <input value="Delete" type="submit" name="delete" id="delete" class="btn btn-danger" onclick="confirm('Are you sure you want to delete? This will be permanent!')">
+                    <input value="Delete" type="submit" name="delete" id="delete" class="btn btn_delete" onclick="confirm('Are you sure you want to delete? This will be permanent!')">
                 </form>
             </div>
         {% endif %}
