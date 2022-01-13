@@ -4,15 +4,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/dashboard.css')}}">
     <title>Document</title>
 </head>
 <body>
-    <h2 id="banner">{{reviews[0].fName}} {{reviews[0].lName}}'s Reviews</h1>
+    <h2 id="banner">{{reviews[0].user.fName}} {{reviews[0].user.lName}}'s Reviews</h1>
     <div id="nav_bar">
         <a id="nav_btn" href="/dashboard">Home</a>
         <a id="nav_btn" href="/add_review">Add a review!</a>
         <a id="nav_btn" href="/logout">Logout</a>
     </div>
-    
+    <hr>
+    <ul id="review_list">
+        {% for review in reviews %}
+            <li>
+                <div id="review_card">
+                    <h2>{{review.restaurant_name}}</h2>
+                    <hr>
+                    <h3>{{review.review}}</h3>
+                    <h2>Meatball rating: {{review.rating}}</h2>
+                    {% if review.is_blasted == 1 %}
+                        <h2>Blasted with protein?: Hell yes, Bröther!</h2>
+                    {% elif review.is_blasted == 0 %}
+                        <h2>Blasted with protein?: Nope! Definitely not!</h2>
+                    {% endif %}
+                    {% if review.is_affordable == 1 %}
+                        <h2>Affordable?: Yes!</h2>
+                    {% elif review.is_affordable == 0 %}
+                        <h2>Affordable?: Nope! Bring extra cash!</h2>
+                    {% endif %}
+                    <h2>Updated at: {{review.updated_at}}</h2>
+                    <h2>Written on: {{review.created_at}}</h2>
+                    <div id="btn_container" class="btn-group">
+                        <a class="btn green" href="/show_review/{{review.id}}">Read Review</a>
+                        {% if review.user_id == session["user_id"] %}
+                        <a class="btn white" href="/edit/{{review.id}}">Edit</a>
+                        <form action="/delete/{{review.id}}" method="POST">
+                            <input type="submit" value="Delete" class="btn orange" onclick="return confirm('Are you sure you want to delete? This is permanent!')">
+                        </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

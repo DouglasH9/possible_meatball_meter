@@ -110,7 +110,22 @@ class Review:
         for row in result:
             review = cls(row)
 
-        all_user_reviews.append(review)
+            # creates instance of user who left review and stores in dictionary
+            user_data = {
+                # specify users.id because both users and reviews will have a unique id
+                "id" : row["users.id"],
+                "fName" : row["fName"],
+                "lName" : row["lName"],
+                "email" : row["email"],
+                "password" : row["password"],
+                # specify users created at and update at, because reviews will also have created and updated columns
+                "created_at" : row["users.created_at"],
+                "updated_at" : row["users.updated_at"]
+            }
+            # setting user_data to the user attribute of the review
+            review.user = user.User(user_data)
+
+            all_user_reviews.append(review)
 
         return all_user_reviews
 
