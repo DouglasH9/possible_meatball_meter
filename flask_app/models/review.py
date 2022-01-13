@@ -102,7 +102,7 @@ class Review:
 
     @classmethod
     def get_users_reviews(cls, data):
-        query = "SELECT * FROM reviews LEFT JOIN users on user_id WHERE user_id = %(id)s"
+        query = "SELECT * FROM users LEFT JOIN reviews on users.id = reviews.user_id WHERE users.id = %(id)s"
         result = connectToMySQL("meatball_meter").query_db(query, data)
 
         all_user_reviews = []
@@ -110,23 +110,20 @@ class Review:
         for row in result:
             review = cls(row)
 
-            # creates instance of user who left review and stores in dictionary
             user_data = {
-                # specify users.id because both users and reviews will have a unique id
-                "id" : row["users.id"],
+                "id" : row["id"],
                 "fName" : row["fName"],
                 "lName" : row["lName"],
                 "email" : row["email"],
                 "password" : row["password"],
-                # specify users created at and update at, because reviews will also have created and updated columns
-                "created_at" : row["users.created_at"],
-                "updated_at" : row["users.updated_at"]
+                "created_at" : row['created_at'],
+                "updated_at" : row['updated_at']
             }
-            # setting user_data to the user attribute of the review
+
             review.user = user.User(user_data)
-
+            print(row)
             all_user_reviews.append(review)
-
+        print(all_user_reviews[0].user)
         return all_user_reviews
 
     @classmethod
