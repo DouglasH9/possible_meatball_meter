@@ -8,17 +8,6 @@ body {
     font-weight: 900;
 }
 
-#banner {
-    background-color: rgb(24,150,95, 0.5);
-    text-shadow: 0 1px 1px rgb(0, 0, 0, 0.8);
-    color: antiquewhite;
-    border-bottom: 4px solid black;
-    border-radius: 7px;
-    padding: 15px;
-    text-align: center;
-    width: 90%;
-    margin: auto;
-}
 
 @keyframes myGradient {
     0% {
@@ -32,6 +21,18 @@ body {
     }
 }
 
+#banner {
+    background-image: linear-gradient(-45deg, rgba(129, 243, 95, 0.3), rgba(53, 218, 12, 0.5), rgba(211, 207, 93, 0.6), rgba(235, 116, 61, 0.7), rgba(221, 52, 10, 0.9));
+    text-shadow: 0 1px 1px rgb(0, 0, 0, 0.8);
+    color: antiquewhite;
+    border-bottom: 4px solid black;
+    border-radius: 7px;
+    padding: 15px;
+    text-align: center;
+    width: 90%;
+    margin: auto;
+}
+
 #nav_bar {
     width: 80%;
     margin: auto;
@@ -40,7 +41,7 @@ body {
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
     background-size: 350% 350%;
-    background-image: linear-gradient(-45deg, rgba(243, 161, 67, 0.3), rgba(245, 124, 48, 0.5), rgba(247, 119, 39, 0.6), rgba(245, 87, 14, 0.7), rgba(221, 52, 10, 0.9));
+    background-image: linear-gradient(-45deg, rgba(129, 243, 95, 0.3), rgba(53, 218, 12, 0.5), rgba(211, 207, 93, 0.6), rgba(235, 116, 61, 0.7), rgba(221, 52, 10, 0.9));
     animation-name: myGradient;
     animation-duration: 12s;
     animation-iteration-count: infinite;
@@ -51,7 +52,7 @@ body {
 }
 
 #nav_btn {
-    background-color: rgb(47, 120, 237, 0.7);
+    background-color: rgb(0, 0, 0, 0.7);
     color: antiquewhite;
     text-decoration: none;
     font-weight: 900;
@@ -65,7 +66,7 @@ body {
 #nav_btn:hover {
     transform: scale(1.1);
     box-shadow: 4px 4px 10px rgba(221, 52, 10, 0.9);
-    background-color: rgba(8, 96, 238, 0.9);
+    background-color: rgba(0, 0, 0, 0.9);
 }
 
 #form_container {
@@ -97,7 +98,7 @@ body {
     margin-bottom: 20px;
     background-color: rgb(128, 128, 128, 0.7);
     border-bottom: 5px solid rgb(0, 219, 99);
-    transition: all 0.7s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 
 #restaurant_name:focus {
@@ -109,7 +110,7 @@ body {
     margin-bottom: 20px;
     background-color: rgb(128, 128, 128, 0.7);
     border-bottom: 5px solid rgb(0, 219, 99);
-    transition: all 0.7s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 
 #review:focus {
@@ -125,19 +126,25 @@ body {
 .check_field {
     padding: 5px;
     border-radius: 8px;
-    background-color: rgb(0, 0, 0, 0.7);
-    border: 1px solid rgb(0, 219, 99);
-    box-shadow: 2px 2px 3px 3px aliceblue;
+    background-color: rgb(0, 0, 0, .8);
+    /* border: 1px solid rgb(0, 219, 99); */
+    box-shadow: 3px 3px 5px rgb(50, 76, 84),
+                -2px -2px 5px rgb(0, 0, 0, 0.2);
     margin: 10px;
 }
 
 #checked_field {
     padding: 5px;
     border-radius: 8px;
-    background-color: rgb(0, 0, 0, 0.7);
-    border: 1px solid rgb(237, 111, 14);
-    box-shadow: -2px -2px 3px 3px aliceblue;
+    background-color: rgb(0, 0, 0, .8);
+    /* border: 1px solid rgb(237, 111, 14); */
+    box-shadow: inset 3px 3px 5px rgb(50, 76, 84),
+                inset -2px -2px 5px rgb(0, 0, 0, 0.2);
     margin: 10px;
+}
+
+.checked {
+    transform: scale(0.98);
 }
 
 #slider {

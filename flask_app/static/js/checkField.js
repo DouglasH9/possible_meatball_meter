@@ -8,15 +8,19 @@ console.log(blastBox)
 blastBox.addEventListener("change", function() {
     if (this.checked == true) {
         checkField1.id = "checked_field"
+        checkField1.classList.add("checked")
     } else {
         checkField1.id = "check_field1"
+        checkField1.classList.remove("checked")
     }
 })
 
 affordBox.addEventListener("change", function() {
     if (this.checked == true) {
         checkField2.id = "checked_field"
+        checkField2.classList.add("checked")
     } else {
         checkField2.id = "check_field2"
+        checkField2.classList.remove("checked")
     }
 })
