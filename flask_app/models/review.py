@@ -52,7 +52,7 @@ class Review:
         query = "SELECT * FROM reviews LEFT JOIN users ON users.id = user_id;"
         result = connectToMySQL("meatball_meter").query_db(query)
 
-        # declares and all_reviews List variable to store the queried reviews
+        # declares an all_reviews List variable to store the queried reviews
         all_reviews = []
 
         # creates and instance of a review from each row of results
@@ -99,6 +99,20 @@ class Review:
         }
         review.user = user.User(user_data)
         return review
+
+    @classmethod
+    def get_users_reviews(cls, data):
+        query = "SELECT * FROM reviews LEFT JOIN users on user_id WHERE user_id = %(id)s"
+        result = connectToMySQL("meatball_meter").query_db(query, data)
+
+        all_user_reviews = []
+
+        for row in result:
+            review = cls(row)
+
+        all_user_reviews.append(review)
+
+        return all_user_reviews
 
     @classmethod
     def send_edit_to_db(cls, data):

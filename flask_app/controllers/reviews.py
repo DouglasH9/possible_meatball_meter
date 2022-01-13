@@ -43,6 +43,16 @@ def render_one_review(id):
     review = Review.get_one_review(data)
     return render_template("/show_review.html", review = review, userId = session["user_id"])
 
+@app.route("/my_reviews/<int:id>")
+def render_users_reviews(id):
+    if "user_id" not in session:
+        return redirect("logout")
+    data = {
+        "id" : id
+    }
+    reviews = Review.get_users_reviews(data)
+    return render_template("/my_reviews.html", reviews = reviews)
+
 @app.route("/edit/<int:id>")
 def show_edit_page(id):
     if "user_id" not in session:
