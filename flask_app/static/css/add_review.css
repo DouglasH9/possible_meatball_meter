@@ -5,7 +5,7 @@ body {
 
 .fancy_words {
     text-shadow: 0 1px 1px rgb(0, 0, 0, 0.8);
-    font-weight: 900;
+    font-weight: 600;
 }
 
 
@@ -72,8 +72,8 @@ body {
 #form_container {
     display: flex;
     justify-content: center;
-    margin: 35px auto;
-    padding: 12px;
+    margin: 35px auto 0;
+    padding: 25px;
     width: 65%;
     border: 2px solid black;
     border-radius: 8px;
@@ -210,3 +210,72 @@ input[type=range]::-moz-range-thumb {
     -moz-transition: border 1000ms ease;
     transition: border 1000ms ease;
 }
+
+#rangevalue {
+    border-radius: 8px;
+    padding: 3px;
+    background-color: rgb(240, 248, 255, 0.8);
+    box-shadow: 2px 2px 2px rgb(50, 76, 84);
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    font-size: larger;
+}
+
+#flash_div{
+    align-items: center;
+    background-color: rgb(240, 248, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    position: absolute;
+    left: 25%;
+    top: 30%;
+    margin: auto;
+}
+
+#submit_btn{
+    display: block;
+    margin: 35px auto;
+    min-height: 50px;
+    border-radius: 8px;
+    background-color: rgb(0, 0, 0, 0.8);
+    color: antiquewhite;
+    box-shadow: 3px 3px 5px 3px rgb(50, 76, 84),
+                -2px -2px 4px 2px rgb(0, 0, 0, 0.2);
+}
+
+#submit_btn:hover{
+    background-size: 300%;
+    background-image: linear-gradient(-45deg, rgba(0, 0, 0, 0.966), rgba(61, 88, 55, 0.116), rgba(28, 83, 31, 0.952), rgba(56, 243, 31, 0.733), rgb(169, 241, 160));
+    animation-name: myGradient;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+
+.flash{
+    display: block;
+    border-radius: 8px;
+    font-weight: bolder;
+    color: orangered;
+}
+
+#flash_btn{
+    display: block;
+    margin: auto;
+    padding: 5px;
+    border-radius: 8px;
+    width: 12%;
+    font-weight: bolder;
+    background-color: aliceblue;
+    box-shadow: 2px 2px 2px 2px black;
+}
+
+#flash_btn:hover{
+    background-size: 300%;
+    background-image: linear-gradient(-45deg, rgba(129, 243, 95, 0.3), rgba(53, 218, 12, 0.5), rgba(211, 207, 93, 0.6), rgba(235, 116, 61, 0.7), rgba(221, 52, 10, 0.9));
+    animation-name: myGradient;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
+

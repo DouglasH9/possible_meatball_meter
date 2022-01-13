@@ -3,6 +3,7 @@ let affordBox = document.getElementById("is_affordable")
 let checkField1 = document.getElementById("check_field1")
 let checkField2 = document.getElementById("check_field2")
 let thumbSlide = document.getElementById("rating")
+let flashBox = document.getElementById("flash_div")
 
 console.log(blastBox)
 
@@ -30,3 +31,7 @@ thumbSlide.addEventListener("input", () => {
     const value = Number(thumbSlide.value)/10
     thumbSlide.style.setProperty("--thumb-rotate", `${value * 720}deg`);
 })
+
+function removeFlash(){
+    flashBox.remove();
+}
