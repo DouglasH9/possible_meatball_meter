@@ -63,8 +63,9 @@ def edit_review(id):
         "is_affordable" : request.form["is_affordable"],
         "id" : id
     }
+
     if not Review.validate_review(data):
-        return redirect(f"/edit_review/{id}")
+        return redirect(f"/edit/{id}")
 
     Review.send_edit_to_db(data)
     return redirect("/dashboard")

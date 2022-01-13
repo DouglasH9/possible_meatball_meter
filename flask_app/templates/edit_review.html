@@ -4,30 +4,56 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/add_review.css') }}">
     <title>Edit a review!</title>
 </head>
 <body>
-    <div class="d-flex m-3 justify-content-center">
-        <h1>Add a review!</h1>
-        <form action="/edit_review/{{review.id}}", method="POST">
-            <label for="restaurant_name">Restaurant</label>
-            <input type="text" name="restaurant_name" id="restaurant_name" value="{{review.restaurant_name}}">
-            <label for="review">Review</label>
-            <textarea name="review" id="review" cols="50" rows="20">{{review.review}}</textarea>
-            <label for="is_blasted">Blasted with protein?</label>
-            <input type="checkbox" name="is_blasted" value=1>
-            <!-- use hidden input to send value of 0 to MySQL db if box isn't checked -->
-            <input type="hidden" name="is_blasted" value=0>
-            <label for="rating">Meatball Meter Rating</label>
+    <h1 id="banner">Add a review!</h1>
+    <div id="nav_bar">
+        <a id="nav_btn" href="/dashboard">Home</a>
+        <a id="nav_btn" href="/my_reviews">My reviews</a>
+        <a id="nav_btn" href="/logout">Logout</a>
+    </div>
+    <div id="form_container">
+        <form action="/edit_review/{{review.id}}", method="POST" id="the_form">
+            <label class="block form-label fancy_words" for="restaurant_name">Restaurant</label>
+            <input class="block form-control fancy_words block" type="text" name="restaurant_name" id="restaurant_name" value="{{review.restaurant_name}}">
+            <label class="block form-label fancy_words" for="review">Review</label>
+            <textarea class="block form-control fancy_words"  name="review" id="review" cols="50" rows="10">{{review.review}}</textarea>
+            <div id="check_boxes" class="block">
+                <div class="check_field" id="check_field1">
+                    <label class="form-check-label fancy_words" for="is_blasted">Blasted with protein?</label>
+                    <input class="form-check-input fancy_words" type="checkbox" name="is_blasted" value=1>
+                    <input type="hidden" name="is_blasted" value=0>
+                    <!-- use hidden input to send value of 0 to MySQL db if box isn't checked -->
+                </div>
+                <div class="check_field" id="check_field2">
+                    <label class="form-check-label fancy_words" for="is_affordable">Affordable?</label>
+                    <input class="form-check-input fancy_words" type="checkbox" name="is_affordable" id="is_affordable" value=1>
+                </div>
+                    <!-- use hidden input to send value of zero to MySQL db if box not checked -->
+                <input type="hidden" name="is_affordable" value=0>
+            </div>
+            <label class="block fancy_words"  for="rating">Meatball Meter Rating</label>
             <!-- two inputs with same name for meatball meter so users can see value of range slider. set each oninput listeners to each other's values so they're synced -->
-            <input type="range" name="rating" id="rating" min="0" max="8.3" step="0.1" value="{{review.rating}}"  oninput="rangevalue.value=value">
-            <input type="number" min="0" max="8.3" step="0.1" value="{{review.rating}}" id="rangevalue" oninput="rating.value=value">
-            <label for="is_affordable">Affordable?</label>
-            <input type="checkbox" name="is_affordable" id="is_affordable" value=1>
-            <!-- use hidden input to send value of zero to MySQL db if box not checked -->
-            <input type="hidden" name="is_affordable" value=0>
-            <input type="submit" name="submit" value="Add Your Review!">
+            <div class="block" id="slider">
+                <input class="range" type="range" name="rating" id="rating" min="0" max="8.3" step="0.1" value="{{review.rating}}"  oninput="rangevalue.value=value">
+                <input type="number" min="0" max="8.3" step="0.1" value="{{review.rating}}" id="rangevalue" oninput="rating.value=value">
+            </div>
+            <input id="submit_btn" class="block fancy_words" type="submit" name="submit" value="Add Your Review!">
         </form>
     </div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div id="flash_div">
+            {% for message in messages %}
+            <h2 class="flash" style="text-align: center;">{{message}}</h2>
+            {% endfor %}
+        <button id="flash_btn" onclick="removeFlash()">Ok! Ok! I got it!</button>
+        </div>
+        {% endif %}
+    {% endwith %}
+    <script src="{{ url_for('static', filename='js/formField.js') }}"></script>
 </body>
 </html>
