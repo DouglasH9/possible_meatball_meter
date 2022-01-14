@@ -121,9 +121,7 @@ class Review:
             }
             
             review.user = user.User(user_data)
-            print(row)
             all_user_reviews.append(review)
-        print(all_user_reviews[0].user)
         return all_user_reviews
 
     @classmethod
