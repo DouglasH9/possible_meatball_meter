@@ -23,6 +23,23 @@ class Like:
         print(query)
         return connectToMySQL("meatball_meter").query_db(query, data)
 
+    @staticmethod
+    def check_for_like_in_db(data):
+
+        # set variable for whether existence of like is True or False
+        does_not_exist_in_db = True
+
+        # query for like matching user_id AND review_id
+        query = "SELECT * FROM likes WHERE user_id = %(user_id)s AND review_id = %(review_id)s"
+        # store result of query in variable named "result"
+        result = connectToMySQL("meatball_meter").query_db(query,data)
+
+        # if result is greater than zero, like exists, set var to False
+        if result > 0:
+            does_not_exist_in_db = False
+        # return boolean for existence of like
+        return does_not_exist_in_db
+
     @classmethod
     def delete_like(cls, data):
         query = "DELETE FROM likes WHERE id = %(id)s"
