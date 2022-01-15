@@ -34,6 +34,10 @@
         {% endif %}
         <h5 class="block space"><span class="red">Last updated: </span>{{review.updated_at}}</h5>
         <h5 class="block space"><span class="red">First written: </span>{{review.created_at}}</h5>
+        <form action="/add_like/{{review.id}}" method="POST">
+            <input type="hidden" name="user_id" id="user_id" value="{{session['user_id']}}">
+            <input type="submit" name="like" id="like" value="like">
+        </form>
         {% if review.user_id == userId %}
             <div id="btns">
                 <a href="/edit/{{review.id}}" class="btn btn_edit">Edit Review</a>

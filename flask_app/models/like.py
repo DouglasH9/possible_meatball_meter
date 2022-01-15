@@ -18,10 +18,12 @@ class Like:
         self.review = {}
 
     @classmethod
-    def add_like(cls, data):
+    def push_like_to_db(cls, data):
+
         query = "INSERT INTO likes (user_id, review_id, created_at, updated_at) VALUES (%(user_id)s, %(review_id)s, NOW(), NOW());"
         print(query)
-        return connectToMySQL("meatball_meter").query_db(query, data)
+        result = connectToMySQL("meatball_meter").query_db(query, data)
+        return result
 
     @staticmethod
     def check_for_like_in_db(data):
@@ -34,10 +36,13 @@ class Like:
         # store result of query in variable named "result"
         result = connectToMySQL("meatball_meter").query_db(query,data)
 
+        print(result)
+
         # if result is greater than zero, like exists, set var to False
-        if result > 0:
+        if ( result != () ):
             does_not_exist_in_db = False
         # return boolean for existence of like
+        print(does_not_exist_in_db)
         return does_not_exist_in_db
 
     @classmethod
