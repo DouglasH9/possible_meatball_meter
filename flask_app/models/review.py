@@ -51,7 +51,7 @@ class Review:
     def get_all_reviews_with_users(cls):
 
         # left join query grabs all reviews with users.id left joined to user_id
-        query = "SELECT * FROM reviews LEFT JOIN users ON users.id = user_id;"
+        query = "SELECT * FROM reviews LEFT JOIN users ON users.id = user_id ORDER BY reviews.created_at DESC;"
         result = connectToMySQL("meatball_meter").query_db(query)
 
         # declares an all_reviews List variable to store the queried reviews
@@ -104,7 +104,7 @@ class Review:
 
     @classmethod
     def get_users_reviews(cls, data):
-        query = "SELECT * FROM reviews LEFT JOIN users on users.id = reviews.user_id WHERE users.id = %(id)s"
+        query = "SELECT * FROM reviews LEFT JOIN users on users.id = reviews.user_id WHERE users.id = %(id)s ORDER BY reviews.created_at DESC"
         result = connectToMySQL("meatball_meter").query_db(query, data)
 
         all_user_reviews = []
