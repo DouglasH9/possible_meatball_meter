@@ -3,14 +3,24 @@ from flask_app.config.mysqlconnection import connectToMySQL
 app = Flask(__name__)
 app.secret_key = "jinkies!"
 
-def get_likes_count_for_review(data):
+def get_likes_count_for_review(reviewID: int) -> int:
 
-    
-    query = "SELECT * FROM likes WHERE review_id = %(reviewID)s"
+    data ={
+        "review_id" : reviewID
+    }
+
+    print(reviewID)
+    print(type(reviewID))
+    query = f"SELECT * FROM likes WHERE review_id = {reviewID}"
+    print(type(query))
+    print(query)
     result = connectToMySQL("meatball_meter").query_db(query, data)
     print(result)
-    
+
     likes_count = 0
+
+    for row in result:
+        likes_count += 1
 
     return likes_count
 

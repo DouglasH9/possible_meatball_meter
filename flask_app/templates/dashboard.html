@@ -35,7 +35,7 @@
                     {% endif %}
                     <p>Meatball rating: {{review.rating}}</p>
                     <p>Date of review: {{review.created_at}}</p>
-                    <p>{{get_likes_count_for_review(review.id)}}</p>
+                    <p>Likes: {{get_likes_count_for_review(review.id)}}</p>
                     <div id="btn_container" class="btn-group">
                         <a class="btn green" href="/show_review/{{review.id}}">Read Review</a>
                         {% if review.user_id == user.id %}
