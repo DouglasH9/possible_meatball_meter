@@ -18,4 +18,19 @@ def get_likes_count_for_review(reviewID: int) -> int:
 
     return likes_count
 
-app.jinja_env.globals.update(get_likes_count_for_review = get_likes_count_for_review)
+def get_dislikes_count_for_review(reviewID: int) -> int:
+
+    data ={
+        "review_id" : reviewID
+    }
+    query = f"SELECT * FROM dislikes WHERE review_id = {reviewID}"
+    result = connectToMySQL("meatball_meter").query_db(query, data)
+
+    dislikes_count = 0
+
+    for row in result:
+        dislikes_count += 1
+
+    return dislikes_count
+
+app.jinja_env.globals.update(get_likes_count_for_review = get_likes_count_for_review, get_dislikes_count_for_review = get_dislikes_count_for_review)
