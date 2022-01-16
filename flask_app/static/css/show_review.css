@@ -41,3 +41,20 @@
     z-index: 2;
     box-shadow: 0 0 5px 5px aliceblue;
 }
+
+#like_dislike{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+#like {
+    margin: 10px;
+    background-color: aliceblue;
+}
+
+#dislike {
+    margin: 10px;
+    background-color: aliceblue;
+}

@@ -8,14 +8,8 @@ def get_likes_count_for_review(reviewID: int) -> int:
     data ={
         "review_id" : reviewID
     }
-
-    print(reviewID)
-    print(type(reviewID))
     query = f"SELECT * FROM likes WHERE review_id = {reviewID}"
-    print(type(query))
-    print(query)
     result = connectToMySQL("meatball_meter").query_db(query, data)
-    print(result)
 
     likes_count = 0
 

@@ -35,11 +35,16 @@
         <h5 class="block space"><span class="red">Last updated: </span>{{review.updated_at}}</h5>
         <h5 class="block space"><span class="red">First written: </span>{{review.created_at}}</h5>
         <div id="like_dislike">
-            <h5>Likes: {{likes_count}}</h5>
             <form action="/add_like/{{review.id}}" method="POST">
                 <input type="hidden" name="user_id" id="user_id" value="{{session['user_id']}}">
-                <input type="submit" name="like" id="like" value="like">
+                <input type="submit" name="like" id="like" value="">
             </form>
+            <h5>Likes: {{likes_count}}</h5>
+            <form action="/add_dislike/{{review.id}}" method="POST">
+                <input type="hidden" name="user_id" id="user_id" value="{{session['user_id']}}">
+                <input type="submit" name="dislike" id="dislike" value="">
+            </form>
+            <h5>Dislikes: </h5>
         </div>
         {% if review.user_id == userId %}
             <div id="btns">
