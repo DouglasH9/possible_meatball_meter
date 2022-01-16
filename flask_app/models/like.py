@@ -38,12 +38,27 @@ class Like:
 
         print(result)
 
-        # if result is greater than zero, like exists, set var to False
+        # if result is greater than zero, like exists, set does_not_exist_in_db to False
         if ( result != () ):
             does_not_exist_in_db = False
         # return boolean for existence of like
         print(does_not_exist_in_db)
+
         return does_not_exist_in_db
+
+    @classmethod
+    def get_likes_for_review(cls, data):
+        query = "SELECT * FROM likes where review_id = %(id)s"
+        result = connectToMySQL("meatball_meter").query_db(query, data)
+
+        all_likes = []
+
+        for row in result:
+            like = cls(row)
+
+            all_likes.append(like)
+
+        return all_likes
 
     @classmethod
     def delete_like(cls, data):

@@ -17,6 +17,8 @@ class Review:
 
         # define self.user for Review as empty object to be filled when review's user info is pulled from database
         self.user = {}
+        # create empty dictionary to store likes info when needed
+        self.likes = {}
 
     @classmethod
     def add_review(cls, data):
@@ -46,7 +48,7 @@ class Review:
         return is_valid 
 
     @classmethod
-    def get_all_reviews(cls):
+    def get_all_reviews_with_users(cls):
 
         # left join query grabs all reviews with users.id left joined to user_id
         query = "SELECT * FROM reviews LEFT JOIN users ON users.id = user_id;"
@@ -77,7 +79,7 @@ class Review:
             all_reviews.append(review)
 
         return all_reviews
-            
+
     @classmethod
     def get_one_review(cls, data):
         
@@ -123,6 +125,19 @@ class Review:
             review.user = user.User(user_data)
             all_user_reviews.append(review)
         return all_user_reviews
+
+    @classmethod
+    def get_likes_count_for_review(cls, data):
+        query = "SELECT * FROM likes WHERE review_id = %(review_id)s"
+        result = connectToMySQL("meatball_meter").query_db(query, data)
+        print(result)
+        
+        likes_count = 0
+
+        for row in result:
+            likes_count += 1
+
+        return likes_count
 
     @classmethod
     def send_edit_to_db(cls, data):

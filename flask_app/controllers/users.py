@@ -1,5 +1,6 @@
 from flask_app import app
 from flask import render_template, redirect, request, session
+from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app.models.user import User
 from flask_app.models.review import Review
 from flask import flash
@@ -78,9 +79,15 @@ def render_dashboard():
         "id" : session["user_id"]
     }
 
-    return render_template("dashboard.html", user = User.get_by_id(data), reviews = Review.get_all_reviews())
+    return render_template("dashboard.html", user = User.get_by_id(data), reviews = Review.get_all_reviews_with_users())
 
 @app.route("/logout")
 def logout():
     session.clear()
     return redirect("/")
+
+"""
+query for left joined multiple tables for possible later use
+
+SELECT * FROM reviews LEFT JOIN users ON users.id = user_id LEFT JOIN likes ON reviews.id = likes.review_id;
+"""

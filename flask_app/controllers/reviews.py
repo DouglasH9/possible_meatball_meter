@@ -2,6 +2,7 @@ from types import MethodDescriptorType
 from flask_app import app
 from flask import render_template, redirect, request, session, flash
 from flask_app.models.review import Review
+from flask_app.models.like import Like
 from flask_app.models import user
 
 @app.route("/add_review")
@@ -41,7 +42,16 @@ def render_one_review(id):
         "id" : id
     }
     review = Review.get_one_review(data)
-    return render_template("/show_review.html", review = review, userId = session["user_id"])
+    
+    likes = Like.get_likes_for_review(data)
+
+    likes_count = 0
+
+    if len(likes) > 0:
+        likes_count = len(likes)
+
+
+    return render_template("/show_review.html", review = review, userId = session["user_id"], likes_count = likes_count)
 
 @app.route("/my_reviews/<int:id>")
 def render_users_reviews(id):
