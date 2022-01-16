@@ -8,7 +8,7 @@ def get_likes_count_for_review(reviewID: int) -> int:
     data ={
         "review_id" : reviewID
     }
-    query = f"SELECT * FROM likes WHERE review_id = {reviewID}"
+    query = "SELECT * FROM likes WHERE review_id = %(review_id)s"
     result = connectToMySQL("meatball_meter").query_db(query, data)
 
     likes_count = 0
@@ -23,7 +23,7 @@ def get_dislikes_count_for_review(reviewID: int) -> int:
     data ={
         "review_id" : reviewID
     }
-    query = f"SELECT * FROM dislikes WHERE review_id = {reviewID}"
+    query = "SELECT * FROM dislikes WHERE review_id = %(review_id)s"
     result = connectToMySQL("meatball_meter").query_db(query, data)
 
     dislikes_count = 0
