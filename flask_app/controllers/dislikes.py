@@ -1,9 +1,6 @@
 from types import MethodDescriptorType
 from flask_app import app
 from flask import request, redirect
-from flask_app.models.user import User
-from flask_app.models.review import Review
-from flask_app.models.like import Like
 from flask_app.models.dislike import Dislike
 
 @app.route("/add_dislike/<int:reviewID>", methods=["POST"])
