@@ -37,7 +37,10 @@
 
         <div id="like_dislike">
             {% if check_to_see_if_user_liked_review(session["user_id"], review.id) %}
-            <p>Unlike {{likes_count}} </p>
+            <form action="/add_like/{{review.id}}" method="POST">
+                <input type="hidden" name="user_id" id="user_id" value="{{session['user_id']}}">
+                <input type="submit" name="like" id="like" value="">
+            </form>
             {% else %}
             <form action="/add_like/{{review.id}}" method="POST">
                 <input type="hidden" name="user_id" id="user_id" value="{{session['user_id']}}">
@@ -45,11 +48,15 @@
             </form>
             <h5>Likes: {{likes_count}}</h5>
             {% endif %}
+            {% if check_to_see_if_user_disliked_review(session["user_id"], review.id) %}
+            <p>Dislike {{dislikes_count}}</p>
+            {% else %}
             <form action="/add_dislike/{{review.id}}" method="POST">
                 <input type="hidden" name="user_id" id="user_id" value="{{session['user_id']}}">
                 <input type="submit" name="dislike" id="dislike" value="">
             </form>
             <h5>Dislikes: {{dislikes_count}}</h5>
+            {% endif %}
         </div>
         {% if review.user_id == userId %}
             <div id="btns">

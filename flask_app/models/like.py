@@ -46,24 +46,6 @@ class Like:
 
         return does_not_exist_in_db
 
-    @staticmethod
-    def check_to_see_if_user_liked_review(userID, reviewID):
-
-        data = {
-            "user_id" : userID,
-            "review_id" : reviewID
-        }
-
-        user_has_liked_post = True
-
-        query = "SELECT * FROM likes LEFT JOIN users ON users.id = likes.user_id LEFT JOIN reviews ON reviews.id = likes.review_id WHERE users.id = %(user_id)s AND likes.review_id = %(review_id)s;"
-        result = connectToMySQL("meatball_meter").query_db(query, data)
-
-        if (result == () ):
-            user_has_liked_post = False
-
-        return user_has_liked_post
-
     @classmethod
     def get_likes_for_review(cls, data):
         query = "SELECT * FROM likes where review_id = %(id)s"

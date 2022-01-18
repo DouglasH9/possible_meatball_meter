@@ -35,19 +35,37 @@ def get_dislikes_count_for_review(reviewID: int) -> int:
 
 def check_to_see_if_user_liked_review(userID, reviewID):
 
-        data = {
-            "user_id" : userID,
-            "review_id" : reviewID
-        }
+    data = {
+        "user_id" : userID,
+        "review_id" : reviewID
+    }
 
-        user_has_liked_post = True
+    user_has_liked_post = True
 
-        query = "SELECT * FROM likes LEFT JOIN users ON users.id = likes.user_id LEFT JOIN reviews ON reviews.id = likes.review_id WHERE users.id = %(user_id)s AND likes.review_id = %(review_id)s;"
-        result = connectToMySQL("meatball_meter").query_db(query, data)
+    query = "SELECT * FROM likes LEFT JOIN users ON users.id = likes.user_id LEFT JOIN reviews ON reviews.id = likes.review_id WHERE users.id = %(user_id)s AND likes.review_id = %(review_id)s;"
+    result = connectToMySQL("meatball_meter").query_db(query, data)
 
-        if (result == () ):
-            user_has_liked_post = False
+    if (result == () ):
+        user_has_liked_post = False
 
-        return user_has_liked_post
+    return user_has_liked_post
 
-app.jinja_env.globals.update(get_likes_count_for_review = get_likes_count_for_review, get_dislikes_count_for_review = get_dislikes_count_for_review, check_to_see_if_user_liked_review = check_to_see_if_user_liked_review)
+def check_to_see_if_user_disliked_review(userID, reviewID):
+
+    data = {
+        "user_id" : userID,
+        "review_id" : reviewID
+    }
+
+    user_has_disliked_post = True
+
+    query = "SELECT * FROM dislikes LEFT JOIN users ON users.id = dislikes.user_id LEFT JOIN reviews ON reviews.id = dislikes.review_id WHERE users.id = %(user_id)s AND dislikes.review_id = %(review_id)s;"
+    result = connectToMySQL("meatball_meter").query_db(query, data)
+
+    if (result == () ):
+        user_has_disliked_post = False
+
+    return user_has_disliked_post
+
+
+app.jinja_env.globals.update(get_likes_count_for_review = get_likes_count_for_review, get_dislikes_count_for_review = get_dislikes_count_for_review, check_to_see_if_user_liked_review = check_to_see_if_user_liked_review, check_to_see_if_user_disliked_review = check_to_see_if_user_disliked_review)
