@@ -17,3 +17,8 @@ def add_like(reviewID):
         Like.push_like_to_db(data)
 
     return redirect(f"/show_review/{reviewID}")
+
+"""SQL query to see if user has liked specific post...
+
+SELECT * FROM likes LEFT JOIN users ON users.id = likes.user_id LEFT JOIN reviews ON reviews.id = likes.review_id WHERE users.id = 1 AND likes.review_id = 10;
+"""
