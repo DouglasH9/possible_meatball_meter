@@ -33,4 +33,21 @@ def get_dislikes_count_for_review(reviewID: int) -> int:
 
     return dislikes_count
 
-app.jinja_env.globals.update(get_likes_count_for_review = get_likes_count_for_review, get_dislikes_count_for_review = get_dislikes_count_for_review)
+def check_to_see_if_user_liked_review(userID, reviewID):
+
+        data = {
+            "user_id" : userID,
+            "review_id" : reviewID
+        }
+
+        user_has_liked_post = True
+
+        query = "SELECT * FROM likes LEFT JOIN users ON users.id = likes.user_id LEFT JOIN reviews ON reviews.id = likes.review_id WHERE users.id = %(user_id)s AND likes.review_id = %(review_id)s;"
+        result = connectToMySQL("meatball_meter").query_db(query, data)
+
+        if (result == () ):
+            user_has_liked_post = False
+
+        return user_has_liked_post
+
+app.jinja_env.globals.update(get_likes_count_for_review = get_likes_count_for_review, get_dislikes_count_for_review = get_dislikes_count_for_review, check_to_see_if_user_liked_review = check_to_see_if_user_liked_review)

@@ -59,8 +59,6 @@ def render_one_review(id):
     if len(dislikes) > 0:
         dislikes_count = len(dislikes)
 
-
-
     return render_template("/show_review.html", review = review, userId = session["user_id"], likes_count = likes_count, dislikes_count = dislikes_count)
 
 @app.route("/my_reviews/<int:id>")
