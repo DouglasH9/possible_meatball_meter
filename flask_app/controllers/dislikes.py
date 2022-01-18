@@ -18,3 +18,15 @@ def add_dislike(reviewID):
         Dislike.push_dislike_to_db(data)
 
     return redirect(f"/show_review/{reviewID}")
+
+@app.route("/delete_dislike/<int:reviewID>", methods=["POST"])
+def delete_dislike(reviewID):
+
+    data = {
+        "user_id" : request.form["user_id"],
+        "review_id" : reviewID
+    }
+
+    Dislike.delete_dislike(data)
+
+    return redirect(f"/show_review/{reviewID}")

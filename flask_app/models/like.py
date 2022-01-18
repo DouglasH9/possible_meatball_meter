@@ -62,7 +62,14 @@ class Like:
 
     @classmethod
     def delete_like(cls, data):
-        query = "DELETE FROM likes WHERE id = %(id)s"
+        query = "DELETE FROM likes WHERE likes.user_id = %(user_id)s AND likes.review_id = %(review_id)s"
         result = connectToMySQL("meatball_meter").query_db(query, data)
         return result
+
+
+"""
+SQL query to see if user has liked specific post...
+
+SELECT * FROM likes LEFT JOIN users ON users.id = likes.user_id LEFT JOIN reviews ON reviews.id = likes.review_id WHERE users.id = 1 AND likes.review_id = 10;
+"""
 

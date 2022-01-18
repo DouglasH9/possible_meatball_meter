@@ -18,7 +18,14 @@ def add_like(reviewID):
 
     return redirect(f"/show_review/{reviewID}")
 
-"""SQL query to see if user has liked specific post...
+@app.route("/delete_like/<int:reviewID>", methods=["POST"])
+def delete_like(reviewID):
 
-SELECT * FROM likes LEFT JOIN users ON users.id = likes.user_id LEFT JOIN reviews ON reviews.id = likes.review_id WHERE users.id = 1 AND likes.review_id = 10;
-"""
+    data = {
+        "user_id" : request.form["user_id"],
+        "review_id" : reviewID
+    }
+
+    Like.delete_like(data)
+
+    return redirect(f"/show_review/{reviewID}")

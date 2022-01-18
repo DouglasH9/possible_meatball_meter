@@ -59,6 +59,6 @@ class Dislike:
 
     @classmethod
     def delete_dislike(cls, data):
-        query = "DELETE FROM dislikes WHERE id = %(id)s"
+        query = "DELETE FROM dislikes WHERE dislikes.user_id = %(user_id)s AND dislikes.review_id = %(review_id)s"
         result = connectToMySQL("meatball_meter").query_db(query, data)
         return result
